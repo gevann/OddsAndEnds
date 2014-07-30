@@ -1,12 +1,13 @@
-import json
-import sys
+import json, sys
 
 args = sys.argv
 if len( args ) < 2:
-    print "usage:  $python showmeal.py <mealfile.txt> (option = <b/l/d>)"
+    print "Usage:  $python showmeal.py <mealfile num> (option = <b/l/d>)"
+    sys.exit()
 
 meal = "";
-jdata = open( args[1] )
+data_file_path = "/Users/graemenathan/Documents/Exercise/dailymeals/meal" + args[1] +".json"
+jdata = open( data_file_path )
 data = json.load( jdata )
 
 def show( L, n ):
@@ -16,7 +17,6 @@ def show( L, n ):
         if isinstance( L[x], dict ):
             #is a dictionary, recurse
             out += tabs + x + ":\n" + show( L[x], n+1) 
-           # show(L[x], n+1 ) 
         else:
             out += tabs + x + ": " + L[x] +"\n"
     return out
